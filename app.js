@@ -2,16 +2,11 @@
 
 var express = require("express");
 var app = express();
+var routes = require("./routes")
+var jsonParser = require("body-parser").json;
 
-app.use(function(req, res, next){
-    console.log("First piece of middleware");
-    next();
-});
-
-app.use(function(req, res, next){
-    console.log("Second piece of middleware");
-    next();
-});
+app.use(jsonParser());
+app.use("/questions", routes);
 
 var port = process.env.PORT || 3000;
 
